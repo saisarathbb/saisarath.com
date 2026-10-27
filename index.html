@@ -460,9 +460,9 @@
     </div>
   </div>
 
-  <!-- Blog panel — preloaded so slide transition plays smoothly on first click -->
+  <!-- Blog panel — downloaded in the background independently after initial load -->
   <div id="blog-panel">
-    <iframe id="blog-frame" src="blog.html" frameborder="0" title="Blog"></iframe>
+    <iframe id="blog-frame" data-src="blog.html" frameborder="0" title="Blog"></iframe>
   </div>
 
   <div class="container">
@@ -716,13 +716,31 @@
     document.addEventListener('touchmove', onTouchMove, { passive: false });
     document.addEventListener('touchend', onMouseLeave);
 
-    // ── Blog panel open / close ──
+    // ── Blog panel open / close & background loader ──
     const blogPanel = document.getElementById('blog-panel');
     const mainBox = document.querySelector('.main-box');
 
+    function preloadBlogInBackground() {
+      const frame = document.getElementById('blog-frame');
+      if (frame && !frame.src && frame.dataset.src) {
+        frame.src = frame.dataset.src;
+      }
+    }
+
+    // Start background download independently after page startup without blocking initial rendering
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(preloadBlogInBackground, { timeout: 2500 });
+    } else {
+      setTimeout(preloadBlogInBackground, 1200);
+    }
+
     function openBlogPanel() {
       const frame = document.getElementById('blog-frame');
-      if (!frame) {
+      if (frame) {
+        if (!frame.src && frame.dataset.src) {
+          frame.src = frame.dataset.src;
+        }
+      } else {
         blogPanel.innerHTML = '<iframe id="blog-frame" src="blog.html" frameborder="0" title="Blog"></iframe>';
       }
       blogPanel.classList.add('open');
