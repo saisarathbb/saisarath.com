@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <link rel="icon" type="image/png"
+    href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMwAAADACAMAAAB/Pny7AAAAZlBMVEUAAAD///83NzfQ0ND8/PwFBQX29vYqKirm5uby8vL5+fkuLi7v7+8zMzNvb2+mpqYlJSUODg6dnZ3IyMivr6+Dg4NeXl7X19doaGiVlZUdHR1UVFTAwMBGRkY9PT0XFxeLi4t3d3e5eQH9AAAEMElEQVR4nO2bUZeiMAyFy1qwIKKCI6Ko+P//5LZFZ2cgQZ19SJ1zv7eZ6jm53KQpQZQCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMD/EavN/A/FebmRju0HFDOSurhIR/Y6VxORrM6xdGgvs+e0rKUje53CRBmlpZxLR/Y6zhf9e3wh+UW+6NUbamF80eVCOrLX2eeRJuvlDbXsGF+clnfrMLuc3MZ02e9jm8WuqarZrCqLc/DHmiOzJ299jm2ubW1Sv54YU3XCwT7A+kLi+8uhqfOvnVTnpgn4nHZk+ov35dimo4WkPknHzMHUS+9LZ8i1/EM6ahrrC7kne18aJgGjJEg1R9dfCDGrg10sxyn2qeYqHfmA+K5lLGbrzjBlwmqxanbS4Q+xWhJKzNbVy6SWKDLSwX/F+nLKmf7yhBb7KWkF3zgx5e21NHy93MjP0gK+cE6Yfcz1xJK85fyKjlbSCv7xZ9KXRznmSKQlfLLUdK/cukPyY188R2kRjjhWc6YkWrcnd8/4Ygkhz6yWJb2N9TtUQy5RyqWVeA4pXfut6/tdRgsdU0vrcL4spq4058v10mWDJbOUFmN9octbt25P7hgthV2bDf5n5AcE64jJMbc4pUWZwfdyYWdiFdPhaq/lg5YS7d1iNfymER91MveVvRamv/jzfjX690xWiVLtlBbSsrsv4z2ukpWidhNarvRa5O8qK6LQRJtmzCWZv8QfTCMtei0jMTqS1KI4Y3zuF9O+jNDCt2cbRR667r6QeF+GDcZrsUuyk9uf+kLlnxEeQ69e9YWt/Uj+BoBIfe/Lnql9r6Wlh1HiI4Bx7ntfrrQt2U0LifhwZl0PItJey54O9+YLc1gTH54vv3cZrf3lZWpfd26R8UWLaxmKibQrGG4f6+zahtGSHWSFOEZismZT0LWfNe4LW0bo2t3iSTOsGRafYwfGlySMh+lMdGMtk74sw3hmy4U3vPSd/ew6bF+UOj6lxddLzAjX4UyYn5lUpp394JrR4qblQSSZcoezhyOxpLSfuzBasnB8UeqcPhKTuhxbb+lJtAnrMTN1bh75Mt8S0yj7dxKWFqW458c3X5yWA6k4i3LpQ/+I3eRTV6eFrf1jOLV/58qr6bVQvtikSwPUYu8qOTVey2JFb98muBzr+XB1M96sDO+LzbFdiL44jnUy+s1vMnNzywVZL1mwvjgOpfm+q6X1yk30SV+i3peAuXQzk/epplMz63xnXzBaTLA5dudw6trKvbTQNqf+xnG+ovt+4L6MiZ0vhBbd+/JuzJm+b/bSkb3OoqSPoKaQjux1SF9cjr2hL/OS2cd+iy/Rb/JFv6UvXN93voTdK0fEZ07L9e20qEtR068zhvZj32fYLM/ke6aL4N/HAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADegL/g8TDwUBCW+QAAAABJRU5ErkJggg==" />
+
+  <title>Saisarath</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Montserrat:ital,wght@1,700&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link rel="prefetch" href="blog.html" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Montserrat', monospace;
+      font-style: italic;
+      font-weight: 700;
+      background: #000000;
+    }
+
+    canvas {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      opacity: 0;
+      animation: fadeInCanvas 1s ease forwards;
+      animation-delay: 2s;
+    }
+
+    @keyframes fadeInCanvas {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .container {
+      overflow: visible;
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .black-cover {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #000000;
+      z-index: 10;
+      transform: translateY(0);
+    }
+
+    .glass-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(780px, 92vw);
+      height: min(520px, 78vh);
+      z-index: 999;
+      opacity: 1;
+      transition: opacity 0.6s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .glass-center svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.25));
+    }
+
+    .glass-center svg path {
+      stroke: #ffffff !important;
+    }
+
+    .glass-panel {
+      position: relative;
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.2rem 1.5rem 1.8rem 1.5rem;
+      z-index: 9999;
+    }
+
+    .glass-panel::before {
+      content: "";
+      position: absolute;
+      top: -80px;
+      bottom: -80px;
+      left: -80px;
+      right: -80px;
+      backdrop-filter: blur(4px);
+      -webkit-mask-image: 
+        linear-gradient(to right, transparent, black 25%, black 75%, transparent),
+        linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
+      -webkit-mask-composite: source-in;
+      mask-image: 
+        linear-gradient(to right, transparent, black 25%, black 75%, transparent),
+        linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
+      mask-composite: intersect;
+      z-index: -1;
+    }
+
+    .iron-body-text {
+      font-size: 11.7vmin;
+      color: #d7d7d7;
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      transition: opacity 1.5s ease;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .bio-container {
+      display: grid;
+      grid-template-rows: auto 0fr auto;
+      margin-bottom: 0;
+      opacity: 0;
+      transition: grid-template-rows 1.5s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+      z-index: 999;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .bio-container.show {
+      grid-template-rows: auto 1fr auto;
+      opacity: 1;
+    }
+
+    .divider {
+      width: 15vmin;
+      height: 2px;
+      background-color: #d7d7d7;
+      margin: 0 auto;
+      border-radius: 1px;
+      align-self: center;
+      transform: translateZ(0);
+    }
+
+    .bio-inner-wrapper {
+      overflow: hidden;
+      min-height: 0;
+    }
+
+    .bio-text {
+      font-family: 'Space Mono', monospace;
+      font-style: normal;
+      font-weight: 400;
+      /* Reduced base scale for a more refined look */
+      font-size: clamp(11px, 1.6vmin + 0.25rem, 18px);
+      color: #d7d7d7;
+      text-align: center;
+      margin: 1.2rem 0;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    @keyframes twinkle {
+
+      0%,
+      100% {
+        opacity: 0.3;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
+
+    .gpt-cursor {
+      display: inline-block;
+      font-size: clamp(16px, 2.8vmin + 0.4rem, 28px);
+      line-height: 0;
+      vertical-align: middle;
+      position: relative;
+      top: -0.3vmin;
+      margin-left: 1vmin;
+      animation: twinkle 1s infinite ease-in-out;
+    }
+
+    #bio-typed-text+.typed-cursor {
+      font-size: clamp(16px, 2.8vmin + 0.4rem, 28px) !important;
+      line-height: 0;
+      vertical-align: middle;
+      position: relative;
+      top: -0.3vmin;
+      margin-left: 1vmin;
+    }
+
+    .icon-box {
+      font-size: 0;
+      /* to remove text spacing */
+      color: #d7d7d7;
+      opacity: 0;
+      display: flex;
+      margin-top: 1.2rem;
+      transition: opacity 1.5s ease;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .icon-box svg {
+      width: clamp(20px, 4vmin, 40px);
+      height: clamp(20px, 4vmin, 40px);
+      margin: 0 clamp(4px, 2vw, 16px);
+      transition: transform 0.3s ease, fill 0.3s ease, color 0.3s ease;
+      fill: #d7d7d7;
+      color: #d7d7d7;
+    }
+
+    .icon-box svg:hover,
+    .icon-box svg.touch-hover {
+      transform: scale(1.2);
+      fill: #ffffff;
+      /* highlight on hover */
+      color: #ffffff;
+    }
+
+    .main-box {
+      position: absolute;
+      top: 47%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .touch-hint-container {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      /* Exactly calculates the remaining space to the bottom of the viewport */
+      height: calc(53vh - 50%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    @keyframes fadeInHint {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .touch-hint {
+      display: none;
+      font-family: 'Space Mono', monospace;
+      /* Smaller font size as requested */
+      font-size: clamp(8px, 1vmin + 0.15rem, 11px);
+      color: rgba(215, 215, 215, 0.7);
+      text-align: center;
+    }
+
+    @media (pointer: coarse) {
+      .touch-hint.visible {
+        display: block;
+        animation: fadeInHint 1s ease forwards, twinkle 3s infinite ease-in-out 1s;
+      }
+    }
+
+    .speedometer {
+      position: absolute;
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(8px, 1vmin + 0.15rem, 11px);
+      color: rgba(215, 215, 215, 0.7);
+      text-align: center;
+      opacity: 0;
+      transition: opacity 1s ease, color 0.3s ease;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    @keyframes shake {
+      0% {
+        margin-top: 1px;
+        margin-left: 1px;
+      }
+
+      10% {
+        margin-top: -2px;
+        margin-left: -1px;
+      }
+
+      20% {
+        margin-top: 0px;
+        margin-left: -3px;
+      }
+
+      30% {
+        margin-top: 2px;
+        margin-left: 3px;
+      }
+
+      40% {
+        margin-top: -1px;
+        margin-left: 1px;
+      }
+
+      50% {
+        margin-top: 2px;
+        margin-left: -1px;
+      }
+
+      60% {
+        margin-top: 1px;
+        margin-left: -3px;
+      }
+
+      70% {
+        margin-top: 1px;
+        margin-left: 3px;
+      }
+
+      80% {
+        margin-top: -1px;
+        margin-left: -1px;
+      }
+
+      90% {
+        margin-top: 2px;
+        margin-left: 1px;
+      }
+
+      100% {
+        margin-top: -2px;
+        margin-left: 1px;
+      }
+    }
+
+    .shake-effect {
+      animation: shake 0.5s infinite;
+    }
+
+    /* ── Blog panel (iframe overlay) ── */
+    #blog-panel {
+      position: fixed;
+      inset: 0;
+      z-index: 4000;
+      transform: translateX(100vw);
+      transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+    }
+
+    #blog-panel.open {
+      transform: translateX(0);
+      pointer-events: all;
+    }
+
+    #blog-frame {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+  </style>
+</head>
+
+<body>
+  <canvas></canvas>
+  <div class="main-box">
+    <div class="glass-panel" id="mainGlassPanel">
+      <div class="iron-body-text" id="ironText">Saisarath</div>
+      <div class="bio-container" id="bioText">
+        <div class="divider"></div>
+        <div class="bio-inner-wrapper">
+          <div class="bio-text-container" style="position: relative; margin: 1.2rem 0 1.6rem 0;">
+            <div class="bio-text" style="opacity: 0; pointer-events: none; margin: 0;">
+              Hi, I'm a 17-year-old tech enthusiast and JEE aspirant studying at Sri Chaitanya Techno School,
+              Neelambur<br><br>
+              I enjoy exploring technology with tech stuff, building small projects, and listening to music in my
+              free time
+            </div>
+            <div class="bio-text" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; margin: 0;">
+              <span id="gpt-cursor-container" style="display: none;"><span class="gpt-cursor">●</span></span>
+              <span id="bio-typed-text"></span>
+            </div>
+          </div>
+        </div>
+        <div class="divider"></div>
+      </div>
+      <div class="icon-box">
+        <a href="blog.html" id="globe-link">
+          <svg width="32" height="32" viewBox="38 10 180 180" xmlns="http://www.w3.org/2000/svg">
+            <g fill="none" stroke="currentColor" stroke-width="11" stroke-linecap="round">
+              <circle cx="128" cy="100" r="80" />
+              <line x1="48" y1="100" x2="208" y2="100" />
+              <path d="M128 20 C80 55 80 145 128 180" />
+              <path d="M128 20 C176 55 176 145 128 180" />
+            </g>
+          </svg>
+        </a>
+
+        <a href="https://telegram.me/saisarath" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
+            <path
+              d="M501.974 41.949a30.939 30.939 0 0 0-30.555-6.565L21.231 183.785C8.962 187.829.642 198.781.035 211.684c-.606 12.904 6.649 24.589 18.483 29.768l111.335 48.712 33.591 155.795c1.395 6.472 4.68 12.237 11.639 14.01 7.039 1.793 12.012-2.054 17.264-5.986l82.62-61.865 96.589 79.039c5.626 4.606 12.502 7.008 19.513 7.008a31.091 31.091 0 0 0 9.986-1.657c10.166-3.447 17.702-11.744 20.159-22.193L511.18 71.813a30.938 30.938 0 0 0-9.206-29.864zm-302.43 276.128c-.055.13-.109.277-.16.453l-18.624 65.068-20.784-96.395 142.917-79.405-99.921 104.478a15.03 15.03 0 0 0-3.428 5.801zm5.911 88.525 8.459-29.555 8.091-28.269 28.991 23.724-45.541 34.1zM481.908 64.927l-89.965 382.502c-.045.19-.105.452-.545.601-.436.148-.648-.021-.798-.145l-105.691-86.488-.008-.007-48.969-40.072L393.255 156.82a15.035 15.035 0 0 0 1.035-19.579 15.034 15.034 0 0 0-19.204-3.955L142.135 262.715 30.572 213.902c-.34-.148-.527-.231-.5-.806.027-.573.221-.638.573-.754l450.188-148.4c.218-.071.464-.153.826.177.362.332.302.584.249.808z" />
+          </svg>
+        </a>
+
+        <a href="mailto:hello@saisarath.com" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
+            <path
+              d="M467 76H45C20.137 76 0 96.262 0 121v270c0 24.885 20.285 45 45 45h422c24.655 0 45-20.03 45-45V121c0-24.694-20.057-45-45-45zm-6.302 30L287.82 277.967c-8.5 8.5-19.8 13.18-31.82 13.18s-23.32-4.681-31.848-13.208L51.302 106h409.396zM30 384.894V127.125L159.638 256.08 30 384.894zM51.321 406l129.587-128.763 22.059 21.943c14.166 14.166 33 21.967 53.033 21.967s38.867-7.801 53.005-21.939l22.087-21.971L460.679 406H51.321zM482 384.894 352.362 256.08 482 127.125v257.769z" />
+          </svg>
+        </a>
+
+        <a href="https://github.com/saisarathbb" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
+            <path
+              d="M256 0C115.3 0 0 116.3 0 257c0 139.883 114.25 255 256 255 141.574 0 256-114.945 256-255C512 116.3 396.7 0 256 0zm45 477.5c-14.398 3-29.7 4.5-45 4.5s-30.602-1.5-45-4.5v-70.2c0-16.8 4.5-22.8 10.5-30.902 3.055-3.492 4.898-6.625 18.598-27.296L217 345.5c-59.402-8.7-82.8-39.602-92.102-63.602-12-32.097-5.699-72.3 15.903-97.796 3.3-3.903 6-10.504 3.601-17.403-4.504-13.8-3.902-35.699-.902-44.101 15.906 2.273 32.262 13.668 45.902 21.902 6.286 3.668 9.582 2.7 12.598 3 10.96-2.281 28.059-7.8 54.3-7.8 16.2 0 33.302 2.398 50.102 7.198 3.004-.07 7.832 2.485 16.2-2.398 14.257-8.687 30.058-19.691 45.898-21.902 3 8.402 3.602 30.3-.898 44.101-2.403 6.899.296 13.5 3.601 17.403 21.598 25.5 27.899 65.699 15.899 97.796-9.301 24-32.7 54.903-92.102 63.602l-23.098 3.602c14.16 21.367 15.653 23.93 18.602 27.296C296.5 384.5 301 390.5 301 407.301zm30-8.7v-61.5c0-17.1-3.602-28.5-8.402-36.902 45.601-12.296 78.004-39.3 92.402-78 15.3-40.796 8.402-89.398-17.102-123 4.504-20.097 4.504-52.199-6.296-67.199C386.8 95.602 380.199 92 371.8 92h-.301c-23.262 1.258-41.57 12.973-61.2 24.898-18-4.8-36.3-7.199-54.6-7.199-18.598 0-37.2 2.7-53.696 7.2C181.34 104.437 163.207 93.226 139.3 92c-7.5 0-14.102 3.602-18.903 10.2-10.796 15-10.796 47.1-6.296 67.198-25.504 33.602-32.403 82.5-17.102 123 14.398 38.7 46.8 65.704 92.402 78-3.722 6.512-6.668 14.915-7.828 26.286-9.21 3.175-17.199 4.21-24.629 2.027-7.836-2.316-13.941-7.547-19.246-16.469-11.914-20.015-32.207-36.355-55.312-34.23l2.636 29.883c10.7-.98 21.348 10.34 26.88 19.671 9.124 15.368 21.417 25.446 36.546 29.914 11.23 3.31 21.496 3.23 32.551.872V468.8C93.7 438.199 30 354.8 30 257 30 132.8 131.8 30 256 30s226 102.8 226 227c0 97.8-63.7 181.2-151 211.8z" />
+          </svg>
+        </a>
+
+        <a href="https://x.com/saisarathbb" target="_blank" aria-label="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
+            <path
+              d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="touch-hint-container">
+      <div class="touch-hint">Slide finger across screen to move stars</div>
+      <div class="speedometer" id="speedometer">0 km/s</div>
+    </div>
+  </div>
+
+  <!-- Blog panel — preloaded so slide transition plays smoothly on first click -->
+  <div id="blog-panel">
+    <iframe id="blog-frame" src="blog.html" frameborder="0" title="Blog"></iframe>
+  </div>
+
+  <div class="container">
+    <div class="black-cover"></div>
+    <div class="glass-center" id="signature-splash"><div id="sig-container" style="width: 100%; height: 100%;"></div></div>
+  </div>
+
+  <script>
+    window.addEventListener('load', () => {
+      const cover = document.querySelector('.black-cover');
+      const ironText = document.getElementById('ironText');
+      const upwardDuration = 6000;
+      const upwardDisplacement = '-250vh';
+
+      const glass = document.getElementById('signature-splash');
+      const sigContainer = document.getElementById('sig-container');
+
+      // 3.7x master speed multiplier with user's customized linear timings
+      const MASTER_SPEED = 3.7;
+      const LOCKED_TIMINGS = [
+        { dur: 2350, pause: 150, ease: 'linear', name: "S (Sai)" },
+        { dur: 1650, pause: 200, ease: 'linear', name: "ai (Sai)" },
+        { dur: 350,  pause: 250, ease: 'linear', name: "Dot of i" },
+        { dur: 2350, pause: 150, ease: 'linear', name: "S (Sarath)" },
+        { dur: 4800, pause: 180, ease: 'linear', name: "arath (Sarath)" },
+        { dur: 350,  pause: 150, ease: 'linear', name: "t cross-bar" }
+      ];
+
+      let paths = [];
+      let pathLengths = [];
+      let schedule = [];
+      let TOTAL_DURATION = 0;
+      let startTime = null;
+
+      async function initSignatureSplash() {
+        try {
+          const resp = await fetch('ss_smooth.svg');
+          const svgText = await resp.text();
+          sigContainer.innerHTML = svgText;
+
+          const svgEl = sigContainer.querySelector('svg');
+          if (!svgEl) return fallbackOldCover();
+
+          paths = Array.from(svgEl.querySelectorAll('path'));
+          pathLengths = paths.map(p => {
+            const len = p.getTotalLength();
+            p.style.stroke = '#ffffff';
+            p.style.strokeDasharray = `${len} ${len}`;
+            p.style.strokeDashoffset = `${len}`;
+            return len;
+          });
+
+          // Build schedule scaled by 3.7x
+          schedule = [];
+          let cur = 0;
+          for (let i = 0; i < LOCKED_TIMINGS.length; i++) {
+            const item = LOCKED_TIMINGS[i];
+            const scaledDur = item.dur / MASTER_SPEED;
+            const scaledPause = item.pause / MASTER_SPEED;
+            schedule.push({
+              start: cur,
+              end: cur + scaledDur,
+              duration: scaledDur,
+              name: item.name
+            });
+            cur += scaledDur + scaledPause;
+          }
+          TOTAL_DURATION = cur;
+
+          // Start drawing stroke animation immediately without fade-in delay
+          startTime = performance.now();
+          requestAnimationFrame(tickSignature);
+
+        } catch (err) {
+          console.error('Failed to load signature SVG:', err);
+          fallbackOldCover();
+        }
+      }
+
+      function tickSignature(now) {
+        const elapsed = now - startTime;
+
+        for (let i = 0; i < schedule.length; i++) {
+          const s = schedule[i];
+          const len = pathLengths[i];
+          const p = paths[i];
+
+          if (elapsed >= s.end) {
+            p.style.strokeDashoffset = '0';
+          } else if (elapsed >= s.start && elapsed < s.end) {
+            const prog = Math.max(0, Math.min(1, (elapsed - s.start) / s.duration));
+            p.style.strokeDashoffset = `${len * (1 - prog)}`;
+          } else {
+            p.style.strokeDashoffset = `${len}`;
+          }
+        }
+
+        if (elapsed < TOTAL_DURATION) {
+          requestAnimationFrame(tickSignature);
+        } else {
+          // Finished writing! Linger for 300ms, then fade out glass card and move cover upward
+          setTimeout(() => {
+            glass.style.opacity = 0;
+            setTimeout(() => {
+              glass.style.display = 'none';
+            }, 800);
+            animateCoverUp();
+          }, 350);
+        }
+      }
+
+      function fallbackOldCover() {
+        animateCoverUp();
+      }
+
+      // 250ms delay for page startup before drawing begins
+      setTimeout(() => {
+        initSignatureSplash();
+      }, 250);
+
+      function animateCoverUp() {
+        cover.style.transition = `transform ${upwardDuration}ms cubic-bezier(0.22, 1, 0.36, 1)`;
+        cover.style.transform = `translateY(${upwardDisplacement})`;
+
+        setTimeout(() => {
+          const iconBox = document.querySelector('.icon-box');
+          const bioText = document.getElementById('bioText');
+          const glassPanel = document.getElementById('mainGlassPanel');
+
+          glassPanel.style.display = 'flex';
+
+          setTimeout(() => {
+            glassPanel.style.opacity = 1;
+          }, 10);
+
+          setTimeout(() => {
+            iconBox.style.opacity = 1;
+          }, 50);
+
+          setTimeout(() => {
+            ironText.style.opacity = 1;
+          }, 100);
+
+          setTimeout(() => {
+            bioText.classList.add('show');
+
+            // show cursor after box expands (1.5s transition time)
+            setTimeout(() => {
+              const cursorContainer = document.getElementById('gpt-cursor-container');
+              if (cursorContainer) cursorContainer.style.display = 'inline-block';
+
+              // blink for 1 second before typing
+              setTimeout(() => {
+                if (cursorContainer) cursorContainer.style.display = 'none';
+
+                const targetEl = document.getElementById('bio-typed-text');
+                const targetText = 'Hi, I\'m a 17-year-old tech enthusiast and JEE aspirant studying at Sri Chaitanya Techno School, Neelambur<br><br>I enjoy exploring technology with tech stuff, building small projects, and listening to music in my free time';
+                let charIdx = 0;
+
+                const cursor = document.createElement('span');
+                cursor.className = 'typed-cursor typed-cursor--blink';
+                cursor.innerText = '●';
+                targetEl.parentNode.insertBefore(cursor, targetEl.nextSibling);
+
+                const typeNextChar = () => {
+                  if (charIdx < targetText.length) {
+                    // If we encounter an HTML tag (like <br>), read the whole tag at once
+                    if (targetText[charIdx] === '<') {
+                      let tag = '';
+                      while (charIdx < targetText.length && targetText[charIdx] !== '>') {
+                        tag += targetText[charIdx];
+                        charIdx++;
+                      }
+                      if (charIdx < targetText.length && targetText[charIdx] === '>') {
+                        tag += '>';
+                        charIdx++;
+                      }
+                      targetEl.innerHTML += tag;
+
+                      // Process the next character immediately without delay
+                      typeNextChar();
+                      return;
+                    }
+
+                    // Otherwise, type the single character
+                    targetEl.innerHTML += targetText[charIdx];
+                    charIdx++;
+
+                    // Base delay of 25ms per letter
+                    let delay = 25;
+                    // Add slight random jitter (±10ms)
+                    delay += (Math.random() * 20) - 10;
+
+                    setTimeout(typeNextChar, delay);
+                  } else {
+                    setTimeout(() => {
+                      cursor.style.opacity = 0;
+                    }, 2000); // Waits 2 seconds before disappearing completely
+
+                    // Only show the hint if the user hasn't already figured it out and slid away
+                    if (!touchHintHidden) {
+                      const hint = document.querySelector('.touch-hint');
+                      if (hint) hint.classList.add('visible');
+                    }
+                  }
+                };
+
+                window.typingStarted = true;
+                typeNextChar();
+              }, 1000); // 1 second blink delay
+            }, 1500);
+          }, 1000); // smoothly expand bio text and separate the other two boxes after 1s
+        }, upwardDuration - 4800); //show Saisarath after cover moves up
+      }
+    });
+  </script>
+  <!-- bg stars script stays untouched -->
+  <script>
+    const STAR_COLOR = '#fff';
+    const STAR_SIZE = 3;
+    const STAR_MIN_SCALE = 0.2;
+    const OVERFLOW_THRESHOLD = 50;
+    const STAR_COUNT = (window.innerWidth + window.innerHeight) / 14;
+
+    const canvas = document.querySelector('canvas'),
+      context = canvas.getContext('2d');
+
+    let scale = 1,
+      width,
+      height;
+
+    let stars = [];
+    let pointerX, pointerY;
+    let velocity = { x: 0, y: 0, tx: 0, ty: 0, z: 0.0005 };
+    let touchInput = false;
+    let idleTimer = null;
+    let isIdle = true;
+    let touchHintHidden = false;
+    let hasInteracted = false;
+    let isWarpSpeed = false;
+    let warpFactor = 0;
+
+    generate();
+    resize();
+    step();
+
+    window.onresize = resize;
+    document.onmousemove = onMouseMove;
+    document.onmouseleave = onMouseLeave;
+    document.addEventListener('touchstart', onTouchStart, { passive: false });
+    document.addEventListener('touchmove', onTouchMove, { passive: false });
+    document.addEventListener('touchend', onMouseLeave);
+
+    // ── Blog panel open / close ──
+    const blogPanel = document.getElementById('blog-panel');
+    const mainBox = document.querySelector('.main-box');
+
+    function openBlogPanel() {
+      const frame = document.getElementById('blog-frame');
+      if (!frame) {
+        blogPanel.innerHTML = '<iframe id="blog-frame" src="blog.html" frameborder="0" title="Blog"></iframe>';
+      }
+      blogPanel.classList.add('open');
+      history.pushState({ blog: true }, '', '#blog');
+    }
+
+    // Exposed globally so it can be called programmatically if needed
+    window.closeBlogPanel = function () {
+      blogPanel.classList.remove('open');
+    };
+
+    document.getElementById('globe-link').addEventListener('click', (e) => {
+      e.preventDefault();
+      openBlogPanel();
+    });
+
+    // Browser back button
+    window.addEventListener('popstate', () => {
+      if (blogPanel.classList.contains('open')) {
+        window.closeBlogPanel();
+      }
+    });
+
+    function generate() {
+      for (let i = 0; i < STAR_COUNT; i++) {
+        stars.push({
+          x: 0,
+          y: 0,
+          z: STAR_MIN_SCALE + Math.random() * (1 - STAR_MIN_SCALE),
+        });
+      }
+    }
+
+    function placeStar(star) {
+      star.x = Math.random() * width;
+      star.y = Math.random() * height;
+    }
+
+    function recycleStar(star) {
+      let direction = 'z';
+      let vx = Math.abs(velocity.x),
+        vy = Math.abs(velocity.y);
+
+      if (vx > 1 || vy > 1) {
+        let axis =
+          vx > vy
+            ? Math.random() < vx / (vx + vy)
+              ? 'h'
+              : 'v'
+            : Math.random() < vy / (vx + vy)
+              ? 'v'
+              : 'h';
+
+        if (axis === 'h') direction = velocity.x > 0 ? 'l' : 'r';
+        else direction = velocity.y > 0 ? 't' : 'b';
+      }
+
+      star.z = STAR_MIN_SCALE + Math.random() * (1 - STAR_MIN_SCALE);
+
+      if (direction === 'z') {
+        star.z = 0.1;
+        star.x = Math.random() * width;
+        star.y = Math.random() * height;
+      } else if (direction === 'l') {
+        star.x = -OVERFLOW_THRESHOLD;
+        star.y = height * Math.random();
+      } else if (direction === 'r') {
+        star.x = width + OVERFLOW_THRESHOLD;
+        star.y = height * Math.random();
+      } else if (direction === 't') {
+        star.x = width * Math.random();
+        star.y = -OVERFLOW_THRESHOLD;
+      } else if (direction === 'b') {
+        star.x = width * Math.random();
+        star.y = height + OVERFLOW_THRESHOLD;
+      }
+    }
+
+    function resize() {
+      scale = window.devicePixelRatio || 1;
+      width = window.innerWidth * scale;
+      height = window.innerHeight * scale;
+      canvas.width = width;
+      canvas.height = height;
+      stars.forEach(placeStar);
+    }
+
+    function step() {
+      context.clearRect(0, 0, width, height);
+      update();
+      render();
+      requestAnimationFrame(step);
+    }
+
+    function update() {
+      if (isIdle) {
+        // drift towards top left corner at 45 deg
+        velocity.tx += (-0.3 - velocity.tx) * 0.05;
+        velocity.ty += (-0.3 - velocity.ty) * 0.05;
+      } else {
+        velocity.tx *= 0.96;
+        velocity.ty *= 0.96;
+      }
+      velocity.x += (velocity.tx - velocity.x) * 0.8;
+      velocity.y += (velocity.ty - velocity.y) * 0.8;
+
+      let currentSpeed = Math.round(Math.hypot(velocity.x, velocity.y) * 100);
+      isWarpSpeed = currentSpeed >= 25000;
+      
+      let targetWarp = isWarpSpeed ? 1 : 0;
+      warpFactor += (targetWarp - warpFactor) * 0.05; // Smoothly fades in and out
+
+      const speedo = document.getElementById('speedometer');
+      if (speedo && hasInteracted && window.typingStarted) {
+        if (isWarpSpeed) {
+          speedo.innerText = 'WARP SPEED ACHIEVED';
+          speedo.style.color = '#ff0000';
+          speedo.style.fontWeight = 'bold';
+          speedo.style.letterSpacing = '2px';
+          document.querySelector('.main-box').classList.add('shake-effect');
+        } else {
+          speedo.innerText = currentSpeed + ' km/s';
+          speedo.style.color = 'rgba(215, 215, 215, 0.7)';
+          speedo.style.fontWeight = 'normal';
+          speedo.style.letterSpacing = 'normal';
+          document.querySelector('.main-box').classList.remove('shake-effect');
+        }
+
+        // Hide if settled back at normal idle speed (-0.3, -0.3)
+        if (isIdle && Math.abs(velocity.x - (-0.3)) < 0.05 && Math.abs(velocity.y - (-0.3)) < 0.05) {
+          speedo.style.opacity = '0';
+        } else {
+          speedo.style.opacity = '1';
+        }
+      }
+
+      stars.forEach((star) => {
+        star.x += velocity.x * star.z;
+        star.y += velocity.y * star.z;
+        star.x += (star.x - width / 2) * velocity.z * star.z;
+        star.y += (star.y - height / 2) * velocity.z * star.z;
+        star.z += velocity.z;
+
+        if (
+          star.x < -OVERFLOW_THRESHOLD ||
+          star.x > width + OVERFLOW_THRESHOLD ||
+          star.y < -OVERFLOW_THRESHOLD ||
+          star.y > height + OVERFLOW_THRESHOLD
+        ) {
+          recycleStar(star);
+        }
+      });
+    }
+
+    function render() {
+      context.save();
+      if (warpFactor > 0.01) {
+        const shakeX = (Math.random() - 0.5) * (8 * warpFactor);
+        const shakeY = (Math.random() - 0.5) * (8 * warpFactor);
+        context.translate(shakeX, shakeY);
+      }
+
+      stars.forEach((star) => {
+        context.beginPath();
+        context.lineCap = 'round';
+        context.lineWidth = STAR_SIZE * star.z * scale;
+        
+        let baseAlpha = 0.5 + 0.5 * Math.random();
+        context.globalAlpha = baseAlpha + (0.8 - baseAlpha) * warpFactor;
+        
+        // Smoothly transition color from #fff (255, 255, 255) to #ff0000 (255, 0, 0)
+        let r = 255;
+        let g = Math.round(255 * (1 - warpFactor));
+        let b = Math.round(255 * (1 - warpFactor));
+        context.strokeStyle = `rgb(${r}, ${g}, ${b})`;
+        
+        context.moveTo(star.x, star.y);
+
+        let tailMultiplier = 2 + (15 - 2) * warpFactor;
+        let tailX = velocity.x * tailMultiplier,
+          tailY = velocity.y * tailMultiplier;
+        if (Math.abs(tailX) < 0.1) tailX = 0.5;
+        if (Math.abs(tailY) < 0.1) tailY = 0.5;
+
+        context.lineTo(star.x + tailX, star.y + tailY);
+        context.stroke();
+      });
+
+      context.restore();
+    }
+
+    function movePointer(x, y) {
+      isIdle = false;
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => {
+        isIdle = true;
+      }, 1000);
+
+      if (typeof pointerX === 'number' && typeof pointerY === 'number') {
+        let ox = x - pointerX,
+          oy = y - pointerY;
+        velocity.tx += (ox / 8) * scale * (touchInput ? 1 : -1);
+        velocity.ty += (oy / 8) * scale * (touchInput ? 1 : -1);
+      }
+      pointerX = x;
+      pointerY = y;
+    }
+
+    function hideTouchHint() {
+      if (!touchHintHidden) {
+        touchHintHidden = true;
+        const hint = document.querySelector('.touch-hint');
+        if (hint && hint.classList.contains('visible')) {
+          hint.style.transition = 'opacity 0.5s ease';
+          hint.style.opacity = '0';
+          setTimeout(() => {
+            hint.style.display = 'none';
+            hasInteracted = true;
+          }, 500);
+        } else {
+          if (hint) hint.style.display = 'none';
+          hasInteracted = true;
+        }
+      } else {
+        hasInteracted = true;
+      }
+    }
+
+    function onMouseMove(event) {
+      if (blogPanel.classList.contains('open')) return;
+      hideTouchHint();
+      touchInput = false;
+      movePointer(event.clientX, event.clientY);
+    }
+
+    function onTouchStart(event) {
+      if (blogPanel.classList.contains('open')) return;
+      hideTouchHint();
+      touchInput = true;
+      pointerX = event.touches[0].clientX;
+      pointerY = event.touches[0].clientY;
+      isIdle = false;
+      clearTimeout(idleTimer);
+    }
+
+    function onTouchMove(event) {
+      if (blogPanel.classList.contains('open')) return;
+      touchInput = true;
+      const tx = event.touches[0].clientX;
+      const ty = event.touches[0].clientY;
+      movePointer(tx, ty);
+
+      // Simulate hover for SVG icons with a larger proximity radius (50px)
+      // This prevents the finger from completely hiding the icon while hovering
+      const HOVER_RADIUS = 50;
+      document.querySelectorAll('.icon-box svg').forEach(svg => {
+        const rect = svg.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+
+        // Calculate distance from finger to center of icon
+        if (Math.hypot(tx - cx, ty - cy) < HOVER_RADIUS) {
+          svg.classList.add('touch-hover');
+        } else {
+          svg.classList.remove('touch-hover');
+        }
+      });
+
+      // Explicitly prevent scrolling to ensure the browser doesn't eat the drag event
+      event.preventDefault();
+    }
+
+    function onMouseLeave() {
+      pointerX = null;
+      pointerY = null;
+      document.querySelectorAll('.touch-hover').forEach(node => node.classList.remove('touch-hover'));
+    }
+  </script>
+</body>
+
+</html>
