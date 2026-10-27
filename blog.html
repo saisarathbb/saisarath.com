@@ -457,66 +457,62 @@
     const posts = [
       {
         id: "01",
-        tag: "ENGINEERING",
-        title: "Bypassing Android TV Launcher Lockdowns",
-        summary: "Reverse engineering OEM accessibility hooks and overriding hardware button dispatch to run clean custom shells.",
+        tag: "NOTE",
+        title: "First Post — Yet to develop",
+        summary: "This entry is currently queued for publication. Full technical notes and development writeups will be published here upon completion.",
         date: "Oct 2026",
         body: `
-          <p class="lead">Smart TV platforms have become digital billboards. Stock launchers consume half a gigabyte of background RAM purely to cycle video ads before you even open an application.</p>
-          <p>Over the past month, I set out to completely eliminate the default launcher on my streaming hardware without unlocking the bootloader or flashing custom firmware.</p>
-          <h2>The Input Pipeline</h2>
-          <p>Standard package disabling fails on newer firmware because the WindowManager strictly refuses to boot if no home package responds. Instead of uninstalling the system app, we register a privileged <code>AccessibilityService</code> configured to filter raw key events.</p>
-          <pre><code>public boolean onKeyEvent(KeyEvent event) {
-    if (event.getKeyCode() == KeyEvent.KEYCODE_HOME) {
-        if (event.getAction() == KeyEvent.ACTION_UP) {
-            launchCleanLauncher();
-            return true; // Consume event completely
-        }
-    }
-    return super.onKeyEvent(event);
-}</code></pre>
-          <p>By consuming the event before it propagates to the system launcher service, the TV transitions to our lightweight launcher in under 50 milliseconds.</p>
+          <p class="lead">This post is currently in progress.</p>
+          <p>Full technical logs, development notes, and architecture diagrams will appear here once finalized.</p>
+          <pre><code>status: yet to develop</code></pre>
         `
       },
       {
         id: "02",
-        tag: "ARCHITECTURE",
-        title: "The Case for Fewer Layers",
-        summary: "Why modern stacks collapse under their own indirection, and the quiet power of choosing simpler primitives.",
+        tag: "NOTE",
+        title: "Second Post — Yet to develop",
+        summary: "This entry is currently queued for publication. Full technical notes and development writeups will be published here upon completion.",
         date: "Aug 2026",
         body: `
-          <p class="lead">Software engineering has developed an obsession with wrapping working primitives inside layers of abstractions until nobody understands the failure modes anymore.</p>
-          <p>Every additional proxy tier, caching layer, and microservice boundary introduced into an architecture adds operational tax. When something inevitably breaks at 2 AM, the bug is almost never in the core business logic—it is in the seams between your abstractions.</p>
-          <h2>Direct Memory & Simple Protocols</h2>
-          <p>Keeping state compact, writing sequential file reads, and leveraging operating system page caches often out-performs elaborate distributed setups while running on a $5 machine with zero maintenance.</p>
+          <p class="lead">This post is currently in progress.</p>
+          <p>Full technical logs, development notes, and architecture diagrams will appear here once finalized.</p>
+          <pre><code>status: yet to develop</code></pre>
         `
       },
       {
         id: "03",
-        tag: "SYSTEMS",
-        title: "Microsecond Latency in Go Services",
-        summary: "Eliminating garbage collector pauses through stack retention, memory arenas, and zero-allocation IO buffers.",
+        tag: "NOTE",
+        title: "Third Post — Yet to develop",
+        summary: "This entry is currently queued for publication. Full technical notes and development writeups will be published here upon completion.",
         date: "Jun 2026",
         body: `
-          <p class="lead">Go makes building concurrent networked software intuitive. But when you push high packet throughput, the garbage collector's mark-and-sweep phases introduce tail latency spikes that ruin predictable SLAs.</p>
-          <p>The solution is not to fight the runtime, but to write loops where memory never leaves the stack frame during standard request pipelines.</p>
-          <pre><code>// Reusable buffer slab passed by pointer to avoid heap escapes
-type PacketBuffer struct {
-    raw [4096]byte
-    len int
-}</code></pre>
-          <p>Profiling memory allocations with <code>-benchmem</code> and inspecting compiler escape analysis (<code>-gcflags="-m"</code>) allowed us to eliminate over 95% of heap allocations on hot paths.</p>
+          <p class="lead">This post is currently in progress.</p>
+          <p>Full technical logs, development notes, and architecture diagrams will appear here once finalized.</p>
+          <pre><code>status: yet to develop</code></pre>
         `
       },
       {
         id: "04",
-        tag: "TOOLING",
-        title: "Tools That Disappear",
-        summary: "Design notes on command-line utilities that prioritize silence, composition, and zero external runtime requirements.",
+        tag: "NOTE",
+        title: "Fourth Post — Yet to develop",
+        summary: "This entry is currently queued for publication. Full technical notes and development writeups will be published here upon completion.",
         date: "Apr 2026",
         body: `
-          <p class="lead">The best tool is one you never think about while using it. It starts instantly, respects standard streams, and produces deterministic output without unsolicited banners or telemetry checks.</p>
-          <p>When software does its job quietly, it compounds into your daily workflow rather than demanding your attention.</p>
+          <p class="lead">This post is currently in progress.</p>
+          <p>Full technical logs, development notes, and architecture diagrams will appear here once finalized.</p>
+          <pre><code>status: yet to develop</code></pre>
+        `
+      },
+      {
+        id: "05",
+        tag: "NOTE",
+        title: "Fifth Post — Yet to develop",
+        summary: "This entry is currently queued for publication. Full technical notes and development writeups will be published here upon completion.",
+        date: "Jan 2026",
+        body: `
+          <p class="lead">This post is currently in progress.</p>
+          <p>Full technical logs, development notes, and architecture diagrams will appear here once finalized.</p>
+          <pre><code>status: yet to develop</code></pre>
         `
       }
     ];
