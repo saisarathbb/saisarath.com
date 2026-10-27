@@ -403,7 +403,7 @@
   <div class="site-wrapper">
 
     <!-- Top Navigation -->
-    <header>
+    <header id="site-header">
       <button class="back-btn" onclick="handleExit()">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M19 12H5M12 19l-7-7 7-7"/>
@@ -550,6 +550,8 @@
       `).join('');
     }
 
+    const siteHeader = document.getElementById('site-header');
+
     // Open Reader
     function openPost(id) {
       const p = posts.find(item => item.id === id);
@@ -560,6 +562,7 @@
       document.getElementById('r-date').textContent = p.date;
       document.getElementById('r-body').innerHTML = p.body;
 
+      if (siteHeader) siteHeader.style.display = 'none';
       indexView.style.display = 'none';
       readerView.style.display = 'block';
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -569,6 +572,7 @@
     function closeArticle() {
       readerView.style.display = 'none';
       indexView.style.display = 'block';
+      if (siteHeader) siteHeader.style.display = 'flex';
     }
 
     // Exit handler (works in iframe or standalone)
